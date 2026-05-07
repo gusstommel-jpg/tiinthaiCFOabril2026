@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tiin Thai · Diagnóstico Financiero 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --noir: #0F0F0F;
+    --offwhite: #F7F4EF;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --gold-pale: #FFF8E1;
+    --red: #C0392B;
+    --red-pale: #FFF0EE;
+    --green: #1A6B3C;
+    --green-pale: #F0FFF4;
+    --slate: #4A5568;
+    --mist: #EDF0F4;
+    --amber: #E67E22;
+    --amber-pale: #FFFBF0;
+    --border: #E2E8F0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--offwhite);
+    color: var(--noir);
+    line-height: 1.6;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--noir);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 6px;
+    background: var(--gold);
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    min-height: 420px;
+  }
+  .hero-left {
+    background: #1A1A1A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    position: relative;
+  }
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    right: -30px; top: 0;
+    border-left: 30px solid #1A1A1A;
+    border-top: 420px solid transparent;
+  }
+  .hero-badge {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .hero-tt {
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    color: white;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .hero-right {
+    padding: 60px 50px 40px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    line-height: 1.1;
+    color: white;
+    margin-bottom: 8px;
+  }
+  .hero-sub {
+    color: var(--gold-light);
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .hero-desc {
+    color: #AAAAAA;
+    font-size: 12px;
+    line-height: 1.7;
+    max-width: 520px;
+    border-left: 2px solid var(--gold);
+    padding-left: 16px;
+    margin: 20px 0;
+  }
+  .hero-metrics {
+    display: flex;
+    gap: 0;
+    background: #1A1A1A;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .metric-card {
+    flex: 1;
+    padding: 16px 20px;
+    border-right: 1px solid #2A2A2A;
+  }
+  .metric-card:last-child { border-right: none; }
+  .metric-label {
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .metric-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: white;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .metric-sub { font-size: 9px; color: #666; }
+
+  /* ── NAV / TOC ── */
+  .toc {
+    background: var(--noir);
+    border-top: 1px solid #222;
+    padding: 0 50px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .toc-item {
+    padding: 14px 20px;
+    font-size: 11px;
+    color: #888;
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all .2s;
+    font-weight: 500;
+  }
+  .toc-item:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ── MAIN LAYOUT ── */
+  .main { max-width: 980px; margin: 0 auto; padding: 50px 30px; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 56px; }
+  .section-eyebrow {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--noir);
+    margin-bottom: 4px;
+  }
+  .section-rule {
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 10px 0 20px;
+  }
+  .section-lead {
+    font-size: 13px;
+    color: var(--slate);
+    line-height: 1.7;
+    max-width: 720px;
+    margin-bottom: 20px;
+  }
+
+  /* ── MAPA DE CERTEZA TABLE ── */
+  .cert-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .cert-table th {
+    background: var(--noir);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .cert-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--slate);
+    vertical-align: middle;
+  }
+  .cert-table tr:nth-child(odd) td { background: white; }
+  .cert-table tr:nth-child(even) td { background: var(--mist); }
+  .cert-table tr.confirmed td { background: var(--green-pale); }
+  .cert-table tr.hypothesis td { background: var(--amber-pale); }
+  .cert-table tr.confirmed td:first-child { font-weight: 600; color: var(--noir); }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 3px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .badge-confirmed { background: var(--green); color: white; }
+  .badge-hypothesis { background: var(--amber); color: white; }
+  .badge-alert { background: var(--red); color: white; }
+  .badge-info { background: var(--slate); color: white; }
+
+  /* ── DATA TABLES ── */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 16px; }
+  .data-table th {
+    background: var(--noir);
+    color: white;
+    padding: 9px 12px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 11px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .data-table th:first-child { text-align: left; }
+  .data-table td {
+    padding: 8px 12px;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+    color: var(--slate);
+  }
+  .data-table td:first-child { text-align: left; color: var(--noir); font-weight: 500; }
+  .data-table tr:nth-child(even) td { background: var(--mist); }
+  .data-table tr.total-row td {
+    background: var(--noir);
+    color: var(--gold);
+    font-weight: 700;
+    border-top: 2px solid var(--gold);
+  }
+  .data-table td.positive { color: var(--green); font-weight: 700; }
+  .data-table td.negative { color: var(--red); font-weight: 700; }
+  .data-table td.highlight { background: var(--gold-pale) !important; color: var(--amber); font-weight: 700; }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    border-left: 4px solid var(--gold);
+    background: var(--gold-pale);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .info-box-title {
+    font-weight: 700;
+    color: var(--noir);
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  .info-box ul { list-style: none; padding: 0; }
+  .info-box li {
+    padding: 4px 0;
+    color: var(--slate);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .info-box li::before { content: "→"; color: var(--gold); flex-shrink: 0; font-weight: 700; }
+
+  /* ── CHECKLIST ── */
+  .priority-group { margin-bottom: 20px; }
+  .priority-header {
+    padding: 8px 14px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 4px 4px 0 0;
+  }
+  .priority-high { background: var(--red); }
+  .priority-medium { background: var(--amber); }
+  .priority-low { background: var(--slate); }
+  .checklist-item {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    background: white;
+    align-items: flex-start;
+  }
+  .checklist-item:last-child { border-radius: 0 0 4px 4px; border-bottom: none; }
+  .checklist-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .checklist-name { font-weight: 600; color: var(--noir); font-size: 13px; margin-bottom: 3px; }
+  .checklist-detail { font-size: 11.5px; color: var(--slate); line-height: 1.6; }
+
+  /* ── INSTRUCCIONES ── */
+  .instruction {
+    display: flex;
+    gap: 0;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #FAFAFA;
+    border: 1px solid var(--border);
+  }
+  .instruction-num {
+    background: var(--noir);
+    color: var(--gold);
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    width: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .instruction-body { padding: 16px 20px; }
+  .instruction-title { font-weight: 700; color: var(--noir); font-size: 13px; margin-bottom: 4px; }
+  .instruction-detail { font-size: 12px; color: var(--slate); line-height: 1.6; }
+
+  /* ── 3 QUESTIONS ── */
+  .questions { display: flex; flex-direction: column; gap: 10px; }
+  .question-card {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 100px;
+  }
+  .question-num {
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: white;
+    flex-shrink: 0;
+  }
+  .question-body {
+    background: var(--noir);
+    padding: 20px 24px;
+    flex: 1;
+  }
+  .question-title { font-weight: 700; color: white; font-size: 14px; margin-bottom: 8px; }
+  .question-detail { font-size: 12px; color: #BBBBBB; line-height: 1.7; }
+  .q-red { background: var(--red); }
+  .q-amber { background: var(--amber); }
+  .q-slate { background: var(--slate); }
+
+  /* ── NOTA FOOTER ── */
+  .doc-footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+    margin-top: 40px;
+    font-size: 11px;
+    color: #AAAAAA;
+    line-height: 1.7;
+  }
+
+  /* ── GRID helpers ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ── PRINT ── */
+  @media print {
+    .toc { display: none; }
+    .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section { page-break-inside: avoid; }
+  }
+
+  @media (max-width: 700px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-left { display: none; }
+    .hero-right { padding: 40px 24px 30px; }
+    .hero-metrics { flex-wrap: wrap; }
+    .metric-card { min-width: 45%; }
+    .toc { padding: 0 16px; }
+    .main { padding: 30px 16px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .hero-title { font-size: 28px; }
+    .section-title { font-size: 21px; }
+    .cert-table, .data-table { font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="hero-badge">Diagnóstico Financiero · Confidencial · 2026</p>
+    </div>
+    <div class="hero-right">
+      <div>
+        <p class="hero-eyebrow">Brief Ejecutivo · CFO Review</p>
+        <h1 class="hero-title">Tiin Thai</h1>
+        <p class="hero-sub">Diagnóstico Financiero Mensual</p>
+        <p class="hero-sub" style="color:#888; font-size:13px;">Enero — Abril 2026 · SAPI de CV</p>
+        <p class="hero-desc">
+          Este documento sintetiza los hallazgos del análisis del reporte mensual acumulado de Tiin Thai,
+          separando errores confirmados matemáticamente de hipótesis que requieren validación documental.
+          Incluye los documentos necesarios para que el CFO pueda completar la revisión.
+        </p>
+      </div>
+      <div class="hero-metrics">
+        <div class="metric-card">
+          <div class="metric-label">Ventas Acum. 4M</div>
+          <div class="metric-value">$1.39M</div>
+          <div class="metric-sub">Enero–Abril 2026</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Utilidad Acum.</div>
+          <div class="metric-value">$136k</div>
+          <div class="metric-sub">Según reporte</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Margen Promedio</div>
+          <div class="metric-value">9.8%</div>
+          <div class="metric-sub">Sobre venta bruta</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Error IVA Acum.</div>
+          <div class="metric-value" style="color:#C9A84C;">$30.7k</div>
+          <div class="metric-sub">VN subestimada</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── NAV ── -->
+<nav class="toc">
+  <a class="toc-item" href="#certeza">01 · Mapa de Certeza</a>
+  <a class="toc-item" href="#errores">02 · Errores Confirmados</a>
+  <a class="toc-item" href="#hipotesis">03 · Hipótesis a Investigar</a>
+  <a class="toc-item" href="#documentos">04 · Documentos Requeridos</a>
+  <a class="toc-item" href="#instrucciones">05 · Instrucción Operativa</a>
+  <a class="toc-item" href="#preguntas">06 · Las 3 Preguntas Críticas</a>
+</nav>
+
+<main class="main">
+
+  <!-- ── 01 CERTEZA ── -->
+  <section class="section" id="certeza">
+    <p class="section-eyebrow">01 · Visión General</p>
+    <h2 class="section-title">Mapa de Certeza</h2>
+    <div class="section-rule"></div>
+    <p class="section-lead">
+      Antes de iniciar la revisión a fondo, es clave separar lo que ya está matemáticamente confirmado
+      de lo que son hipótesis que requieren documentos para validarse. Actuar sobre hipótesis no
+      confirmadas como si fueran hechos es el error más común en diagnósticos financieros.
+    </p>
+    <table class="cert-table">
+      <thead>
+        <tr>
+          <th>Hallazgo</th>
+          <th>Estado</th>
+          <th>Impacto Estimado</th>
+          <th>Acción Requerida</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="confirmed">
+          <td>Error cálculo IVA — sistemático 4 meses</td>
+          <td><span class="badge badge-confirmed">✓ Confirmado</span></td>
+          <td>$30,681 subestimado en VN acum.</td>
+          <td>Corregir fórmula en modelo</td>
+        </tr>
+        <tr class="confirmed">
+          <td>Error Corporativo 2% — Enero</td>
+          <td><span class="badge badge-confirmed">✓ Confirmado</span></td>
+          <td>+$5,671 utilidad ficticia en Ene</td>
+          <td>Corregir fórmula, revisar fuente</td>
+        </tr>
+        <tr class="confirmed">
+          <td>Insumos 35% = supuesto, no costo real</td>
+          <td><span class="badge badge-confirmed">✓ Confirmado</span></td>
+          <td>$408,732 acum. sin respaldo documental</td>
+          <td>Conciliar con facturas de compras</td>
+        </tr>
+        <tr class="confirmed">
+          <td>Nómina Febrero anomalía (−51%)</td>
+          <td><span class="badge badge-confirmed">✓ Confirmado</span></td>
+          <td>$17,610 diff vs. mes normal</td>
+          <td>Cruzar con nómina timbrada CFDI</td>
+        </tr>
+        <tr class="confirmed">
+          <td>Descuentos apps no capturados en Resumen</td>
+          <td><span class="badge badge-confirmed">✓ Confirmado</span></td>
+          <td>$56,529 no reflejado</td>
+          <td>Definir criterio contable único</td>
+        </tr>
+        <tr class="hypothesis">
+          <td>Retenciones 2026 dentro de línea de comisiones</td>
+          <td><span class="badge badge-hypothesis">? Hipótesis</span></td>
+          <td>Hasta $144k mal clasificado acum.</td>
+          <td>Revisar liquidaciones de plataformas</td>
+        </tr>
+        <tr class="hypothesis">
+          <td>Doble conteo IVA / retenciones plataformas</td>
+          <td><span class="badge badge-hypothesis">? Hipótesis</span></td>
+          <td>Sin cuantificar aún</td>
+          <td>Requiere revisión contable completa</td>
+        </tr>
+        <tr class="hypothesis">
+          <td>Gastos corporativos fuera del P&amp;L</td>
+          <td><span class="badge badge-hypothesis">? Hipótesis</span></td>
+          <td>Sin cuantificar aún</td>
+          <td>Solicitar detalle hoja Gastos</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── 02 ERRORES ── -->
+  <section class="section" id="errores">
+    <p class="section-eyebrow">02 · Errores Confirmados</p>
+    <h2 class="section-title">Hallazgos Matemáticamente Verificables</h2>
+    <div class="section-rule"></div>
+
+    <p style="font-weight:700; margin-bottom:8px; font-size:14px;">A. Error de IVA — Sistemático en los 4 meses</p>
+    <p class="section-lead" style="margin-bottom:14px;">
+      El IVA se calcula como <strong>Venta × 16%</strong> en lugar del método correcto
+      <strong>Venta ÷ 1.16 × 16%</strong>. Esto infla el IVA y subestima la Venta Neta en cada mes.
+      Todos los costos calculados como porcentaje de Venta Neta heredan este error.
+    </p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Mes</th>
+          <th>Venta Bruta</th>
+          <th>IVA Reportado</th>
+          <th>IVA Correcto</th>
+          <th>VN Reportada</th>
+          <th>VN Correcta</th>
+          <th>Diferencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Enero</td><td>$394,172</td><td>$63,068</td><td>$54,369</td><td>$331,105</td><td>$339,804</td><td class="highlight">+$8,699</td></tr>
+        <tr><td>Febrero</td><td>$310,433</td><td>$49,669</td><td>$42,818</td><td>$260,764</td><td>$267,615</td><td class="highlight">+$6,851</td></tr>
+        <tr><td>Marzo</td><td>$343,149</td><td>$54,904</td><td>$47,331</td><td>$288,245</td><td>$295,818</td><td class="highlight">+$7,573</td></tr>
+        <tr><td>Abril</td><td>$342,492</td><td>$54,799</td><td>$47,240</td><td>$287,693</td><td>$295,252</td><td class="highlight">+$7,558</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>$1,390,246</td><td>$222,440</td><td>$191,758</td><td>$1,167,807</td><td>$1,198,489</td><td>+$30,681</td></tr>
+      </tbody>
+    </table>
+
+    <p style="font-weight:700; margin: 24px 0 8px; font-size:14px;">B. Impacto en Utilidades al Corregir el IVA</p>
+    <p class="section-lead" style="margin-bottom:14px;">
+      Al recalcular la Venta Neta correctamente, los costos porcentuales también se recalculan sobre
+      la base correcta. Enero pierde utilidad; febrero, marzo y abril mejoran.
+    </p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Mes</th>
+          <th>Util. Reportada</th>
+          <th>Util. Corregida</th>
+          <th>Delta</th>
+          <th>Margen Real</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Enero</td><td>$49,934</td><td>$45,951</td><td class="negative">−$3,983</td><td>11.7%</td></tr>
+        <tr><td>Febrero</td><td>$31,133</td><td>$34,695</td><td class="positive">+$3,563</td><td>11.2%</td></tr>
+        <tr><td>Marzo</td><td>$21,713</td><td>$25,651</td><td class="positive">+$3,938</td><td>7.5%</td></tr>
+        <tr><td>Abril</td><td>$33,349</td><td>$37,279</td><td class="positive">+$3,930</td><td>10.9%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box" style="border-color: var(--red); background: var(--red-pale);">
+      <div class="info-box-title" style="color: var(--red);">⚠ Enero tiene un segundo error independiente</div>
+      <p style="font-size:12.5px; color: var(--slate); line-height:1.7;">
+        El Corporativo 2% se registró como <strong>$951</strong> cuando debería ser <strong>$6,622</strong>
+        sobre la venta neta correcta. Esto infla la utilidad de enero en <strong>$5,671 adicionales</strong>.
+        Corrigiendo ambos errores, la utilidad real de enero es ~<strong>$40,279</strong>, no $49,934 —
+        una diferencia del <strong>19%</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── 03 HIPÓTESIS ── -->
+  <section class="section" id="hipotesis">
+    <p class="section-eyebrow">03 · Hipótesis a Investigar</p>
+    <h2 class="section-title">Comisiones y Retenciones Fiscales 2026</h2>
+    <div class="section-rule"></div>
+    <p class="section-lead">
+      A partir del 1 de enero de 2026, las personas morales que reciben ingresos por plataformas
+      digitales están sujetas por primera vez a retención automática (Reforma Fiscal 2026, DOF 7 nov. 2025).
+      Es probable que ni el sistema contable ni el contador estuvieran preparados para clasificarla
+      correctamente desde el día uno.
+    </p>
+
+    <div class="info-box">
+      <div class="info-box-title">Retenciones 2026 — Personas Morales en Plataformas Digitales</div>
+      <ul>
+        <li><strong>ISR: 4%</strong> sobre ingresos brutos (venta sin IVA) — retenido directamente por la plataforma</li>
+        <li><strong>IVA: 8%</strong> del valor de los actos (50% del IVA causado) — retenido directamente</li>
+        <li>Son <strong>pagos provisionales acreditables</strong>, no gastos definitivos</li>
+        <li>Las plataformas deben emitir <strong>CFDI de Retenciones</strong> mensualmente (complemento SPT)</li>
+      </ul>
+    </div>
+
+    <p class="section-lead">
+      Si el sistema contable está registrando comisión + retención ISR + retención IVA como una sola
+      línea, las cifras están infladas. La siguiente tabla muestra el escenario estimado:
+    </p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Mes</th>
+          <th>Comisión Reportada</th>
+          <th>% V.Bruta</th>
+          <th>Ret. ISR Est. (4%)</th>
+          <th>Ret. IVA Est. (8%)</th>
+          <th>Comisión Pura Est.</th>
+          <th>% V.Bruta Pura</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Enero</td><td>$91,742</td><td class="negative">23.3%</td><td>$13,592</td><td>$27,184</td><td class="positive">$50,966</td><td class="positive">12.9%</td></tr>
+        <tr><td>Febrero</td><td>$85,199</td><td class="negative">27.4%</td><td>$10,705</td><td>$21,409</td><td class="positive">$53,086</td><td class="positive">17.1%</td></tr>
+        <tr><td>Marzo</td><td>$101,519</td><td class="negative">29.6%</td><td>$11,833</td><td>$23,665</td><td class="positive">$66,020</td><td class="positive">19.2%</td></tr>
+        <tr><td>Abril</td><td>$88,762</td><td class="negative">25.9%</td><td>$11,810</td><td>$23,620</td><td class="positive">$53,332</td><td class="positive">15.6%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box" style="background: var(--mist); border-color: var(--slate);">
+      <div class="info-box-title">Benchmark de referencia — México 2025-2026</div>
+      <ul>
+        <li>Uber Eats con repartidor propio: <strong>15%</strong></li>
+        <li>Uber Eats con repartidor de plataforma: <strong>30%</strong></li>
+        <li>Rappi: <strong>20–25% + IVA</strong></li>
+        <li>DiDi Food: <strong>18–30%</strong></li>
+      </ul>
+      <p style="margin-top:10px; font-size:12px; color: var(--slate);">
+        Una comisión pura del 13–19% es consistente con operación de repartidor propio. Una del 23–30%
+        solo tiene sentido con repartidores de la plataforma — lo cual requiere confirmación operativa.
+      </p>
+    </div>
+
+    <p style="font-weight:700; margin: 20px 0 10px; font-size:13px;">Lo que hay que verificar con el contador y los estados de cuenta:</p>
+    <div class="checklist-item" style="border: 1px solid var(--border); border-radius:6px; margin-bottom:6px;">
+      <div class="checklist-icon">🔍</div>
+      <div><div class="checklist-name">¿Las liquidaciones muestran líneas separadas?</div><div class="checklist-detail">¿Uber/Rappi/DiDi desglosan comisión, retención ISR, retención IVA y depósito neto por separado, o viene todo como un solo descuento?</div></div>
+    </div>
+    <div class="checklist-item" style="border: 1px solid var(--border); border-radius:6px; margin-bottom:6px;">
+      <div class="checklist-icon">🔍</div>
+      <div><div class="checklist-name">¿Las retenciones aparecen en otra cuenta del catálogo?</div><div class="checklist-detail">La hoja Gastos tiene cuentas de IVA e ISR. ¿Están siendo registradas adicionalmente ahí? Si es así, hay doble conteo confirmado.</div></div>
+    </div>
+    <div class="checklist-item" style="border: 1px solid var(--border); border-radius:6px;">
+      <div class="checklist-icon">🔍</div>
+      <div><div class="checklist-name">¿Se están acreditando en declaraciones mensuales?</div><div class="checklist-detail">Si no se acreditan, la empresa está pagando de más al SAT. Si se acreditan pero también aparecen como gasto, el resultado operativo está inflado.</div></div>
+    </div>
+  </section>
+
+  <!-- ── 04 DOCUMENTOS ── -->
+  <section class="section" id="documentos">
+    <p class="section-eyebrow">04 · Documentos Requeridos</p>
+    <h2 class="section-title">Lo que el CFO Necesita Antes de Empezar</h2>
+    <div class="section-rule"></div>
+    <p class="section-lead">Sin estos documentos el análisis se queda en hipótesis. Solicitarlos todos antes de la primera sesión de trabajo.</p>
+
+    <div class="priority-group">
+      <div class="priority-header priority-high">🔴 Prioridad Alta — Sin estos no se puede avanzar</div>
+      <div class="checklist-item">
+        <div class="checklist-icon">📄</div>
+        <div><div class="checklist-name">Liquidaciones mensuales de cada plataforma</div><div class="checklist-detail">Uber Eats, Rappi, DiDi — enero a abril. Desglosadas: comisión, retención ISR, retención IVA, descuentos, depósito neto. Aquí se resuelve la hipótesis más importante del análisis.</div></div>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-icon">🧾</div>
+        <div><div class="checklist-name">CFDI de Retenciones (complemento SPT)</div><div class="checklist-detail">Que emite cada plataforma mensualmente. Si no existen, hay un problema de cumplimiento fiscal independiente del análisis — las plataformas están obligadas a emitirlos.</div></div>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-icon">👥</div>
+        <div><div class="checklist-name">Nómina timbrada — especialmente febrero</div><div class="checklist-detail">Recibos de nómina CFDI de los 4 meses. La caída del 51% en febrero vs. enero requiere explicación documentada. No hay justificación operativa visible para esa reducción.</div></div>
+      </div>
+    </div>
+
+    <div class="priority-group">
+      <div class="priority-header priority-medium">🟡 Prioridad Media — Para completar el diagnóstico</div>
+      <div class="checklist-item">
+        <div class="checklist-icon">🛒</div>
+        <div><div class="checklist-name">CFDIs de compras de insumos — enero a abril</div><div class="checklist-detail">Para contrastar el 35% supuesto con el costo real medido. Sin esto, el margen de insumos es una estimación. $408,732 acumulados basados en un supuesto es inaceptable como base de decisiones.</div></div>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-icon">🏦</div>
+        <div><div class="checklist-name">Estado de cuenta bancario — 4 meses</div><div class="checklist-detail">Para cruzar depósitos reales vs. ventas reportadas. Detecta ingresos no registrados, pagos fuera de nómina o transferencias no documentadas.</div></div>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-icon">📋</div>
+        <div><div class="checklist-name">Contrato que respalda el "Retorno de inversión 6%"</div><div class="checklist-detail">$70,068 en 4 meses como gasto antes de utilidad. ¿Es distribución a socios, préstamo o honorarios? La naturaleza jurídica determina si es deducible y cómo afecta las declaraciones.</div></div>
+      </div>
+    </div>
+
+    <div class="priority-group">
+      <div class="priority-header priority-low">⚫ Segunda Fase — Para profundizar</div>
+      <div class="checklist-item">
+        <div class="checklist-icon">📊</div>
+        <div><div class="checklist-name">Detalle de la hoja Gastos — con montos reales</div><div class="checklist-detail">La hoja tiene 80+ cuentas contables sin montos visibles en el resumen operativo. Qué gastos reales (honorarios, IMSS, mantenimiento, seguros) están siendo absorbidos por el corporativo y no aparecen en este P&amp;L.</div></div>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-icon">🎯</div>
+        <div><div class="checklist-name">Presupuesto o forecast 2026 (si existe)</div><div class="checklist-detail">Sin benchmark presupuestal, no es posible evaluar si los resultados son buenos o malos — solo si son consistentes internamente. Un 9.8% de margen puede ser excelente o insuficiente dependiendo del objetivo.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 05 INSTRUCCIONES ── -->
+  <section class="section" id="instrucciones">
+    <p class="section-eyebrow">05 · Instrucción Operativa</p>
+    <h2 class="section-title">Cómo Trabajar Este Análisis Correctamente</h2>
+    <div class="section-rule"></div>
+
+    <div class="instruction">
+      <div class="instruction-num">1</div>
+      <div class="instruction-body">
+        <div class="instruction-title">Antes de corregir cualquier número, documentar el criterio actual</div>
+        <div class="instruction-detail">El riesgo es que alguien "arregle" el Excel sin dejar rastro. Cada ajuste debe ir acompañado de su fuente y justificación. Crear una pestaña de "Auditoría de cambios" con fecha, descripción del cambio y referencia del documento de soporte.</div>
+      </div>
+    </div>
+
+    <div class="instruction">
+      <div class="instruction-num">2</div>
+      <div class="instruction-body">
+        <div class="instruction-title">Separar errores de fórmula de errores de criterio</div>
+        <div class="instruction-detail">El IVA mal calculado es un error de fórmula — corrección directa. El Corporativo 2% en enero puede ser error de fórmula o un criterio diferente aplicado ese mes. La diferencia importa para saber si hay más períodos afectados.</div>
+      </div>
+    </div>
+
+    <div class="instruction">
+      <div class="instruction-num">3</div>
+      <div class="instruction-body">
+        <div class="instruction-title">No corregir las comisiones hasta confirmar la hipótesis de retenciones</div>
+        <div class="instruction-detail">Si se ajusta la línea de comisiones antes de tener las liquidaciones de las plataformas, se pierde la trazabilidad y se pueden crear descuadres en las declaraciones ya presentadas ante el SAT.</div>
+      </div>
+    </div>
+
+    <div class="instruction">
+      <div class="instruction-num">4</div>
+      <div class="instruction-body">
+        <div class="instruction-title">La reforma 2026 es nueva — no asumir negligencia</div>
+        <div class="instruction-detail">Las retenciones automáticas a personas morales por plataformas entraron el 1 de enero de 2026. Es probable que el sistema contable no estuviera configurado para esto desde el día uno. El foco debe ser corregir hacia adelante y verificar si hay impacto en declaraciones ya presentadas.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 06 PREGUNTAS ── -->
+  <section class="section" id="preguntas">
+    <p class="section-eyebrow">06 · Decisión Crítica</p>
+    <h2 class="section-title">Las 3 Preguntas que Deben Responderse Primero</h2>
+    <div class="section-rule"></div>
+    <p class="section-lead">Antes de tomar cualquier decisión de expansión, inversión o precio, estas tres preguntas deben tener respuesta documentada.</p>
+
+    <div class="questions">
+      <div class="question-card">
+        <div class="question-num q-red">01</div>
+        <div class="question-body">
+          <div class="question-title">¿Cuál es el costo de insumos real, medido con facturas y conciliado contra merma?</div>
+          <div class="question-detail">$408,732 en 4 meses basados en un supuesto del 35% es inaceptable como base de decisiones. Si el costo real es 38%, el negocio opera en breakeven. Si es 32%, hay espacio de maniobra. Sin esta cifra real, el margen reportado no vale nada.</div>
+        </div>
+      </div>
+      <div class="question-card">
+        <div class="question-num q-amber">02</div>
+        <div class="question-body">
+          <div class="question-title">¿Cuánto le cuesta realmente cada peso vendido por app, todo incluido?</div>
+          <div class="question-detail">Comisión pura + retenciones + descuentos subsidiados + empaque delivery + merma por tiempos de entrega. Si la respuesta supera el 35% del precio de venta, el canal de delivery está destruyendo valor, no creándolo. El negocio debería replantear su mix de canales.</div>
+        </div>
+      </div>
+      <div class="question-card">
+        <div class="question-num q-slate">03</div>
+        <div class="question-body">
+          <div class="question-title">¿Qué gastos reales están siendo absorbidos fuera de este P&amp;L?</div>
+          <div class="question-detail">Si el corporativo, las prestaciones de ley, los honorarios y el mantenimiento están siendo pagados por otra entidad, este P&amp;L muestra una rentabilidad ficticia. La utilidad acumulada de $136,128 en 4 meses suena bien hasta que preguntas quién paga el contador, el IMSS y la renta real.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="doc-footer">
+    <p>
+      Este documento fue preparado con base en el análisis del archivo <strong>Reporte_mensual_acum_2026_TT.xlsx</strong>
+      y la investigación de la Reforma Fiscal 2026 aplicable a plataformas digitales en México (DOF 7 nov. 2025).
+      Los escenarios de retenciones son estimaciones basadas en las tasas legales publicadas y deben validarse
+      contra las liquidaciones reales de cada plataforma antes de realizar ajustes contables.
+    </p>
+    <p style="margin-top:8px;">Tiin Thai SAPI de CV · Diagnóstico Financiero · Mayo 2026 · Confidencial — Uso interno</p>
+  </footer>
+
+</main>
+
+<script>
+  // Smooth scroll for nav
+  document.querySelectorAll('.toc-item').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navItems = document.querySelectorAll('.toc-item');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navItems.forEach(n => n.style.borderBottomColor = 'transparent');
+        navItems.forEach(n => n.style.color = '#888');
+        const active = document.querySelector(`.toc-item[href="#${entry.target.id}"]`);
+        if (active) {
+          active.style.borderBottomColor = '#C9A84C';
+          active.style.color = '#C9A84C';
+        }
+      }
+    });
+  }, {rootMargin: '-30% 0px -60% 0px'});
+  sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
